@@ -10,6 +10,7 @@ resource "aws_s3_bucket" "next-js-bucket-99" {
 }
 
 #Ownership Control 
+# only the bucekt owner has control of the objects
 
 resource "aws_s3_bucket_ownership_controls" "bucket-ownership-control" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
@@ -21,6 +22,7 @@ resource "aws_s3_bucket_ownership_controls" "bucket-ownership-control" {
 
 
 #Allowing Public access to Our bucket 
+# centralised management of public access setting for our s3 bucket, to prvent any unauthorised public access
 resource "aws_s3_bucket_public_access_block" "bucket-public-access" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
 
@@ -31,7 +33,8 @@ resource "aws_s3_bucket_public_access_block" "bucket-public-access" {
 }
 
 #BucketACL
-# allows anyone to read the objects inside of our bucket 
+# allows anyone to read the objects inside of our bucket
+#granular access to the bucket and its objects using predefined ACLs 
 resource "aws_s3_bucket_acl" "bucket-acl" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
   acl = "public-read"
@@ -45,7 +48,7 @@ resource "aws_s3_bucket_acl" "bucket-acl" {
 
 # Create Bucket Policy 
 # allows public access to all objects inside the s3 bucket 
-
+# define detailed access permission for the bucket and its objects using IAM policies 
 resource "aws_s3_bucket_policy" "my-bucket-policy" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
 
