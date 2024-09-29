@@ -42,3 +42,26 @@ resource "aws_s3_bucket_acl" "bucket-acl" {
     ]
 
 }
+
+# Create Bucket Policy 
+# allows public access to all objects inside the s3 bucket 
+
+resource "aws_s3_bucket_policy" "my-bucket-policy" {
+  bucket = aws_s3_bucket.next-js-bucket-99.id
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "my-bucket-policy",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Action": "s3:GetObject",
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::next-js-bucket-99",
+      "Principal": "*"
+    }
+  ]
+}
+POLICY
+}
