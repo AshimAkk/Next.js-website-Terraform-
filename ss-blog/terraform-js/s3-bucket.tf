@@ -29,3 +29,16 @@ resource "aws_s3_bucket_public_access_block" "bucket-public-access" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
+
+#BucketACL
+# allows anyone to read the objects inside of our bucket 
+resource "aws_s3_bucket_acl" "bucket-acl" {
+  bucket = aws_s3_bucket.next-js-bucket-99.id
+  acl = "public-read"
+
+  depends_on = [ 
+    aws_s3_bucket_ownership_controls.bucket-ownership-control.id,
+    aws_s3_bucket_public_access_block.bucket-public-access.id
+    ]
+
+}
