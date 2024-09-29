@@ -18,3 +18,14 @@ resource "aws_s3_bucket_ownership_controls" "bucket-ownership-control" {
     object_ownership = "BucketOwnerPrefferred"
   }
 }
+
+
+#Allowing Public access to Our bucket 
+resource "aws_s3_bucket_public_access_block" "bucket-public-access" {
+  bucket = aws_s3_bucket.next-js-bucket-99.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
