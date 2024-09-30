@@ -16,7 +16,7 @@ resource "aws_s3_bucket_ownership_controls" "bucket-ownership-control" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
 
   rule {
-    object_ownership = "BucketOwnerPrefferred"
+    object_ownership = "BucketOwnerPreferred"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_s3_bucket_acl" "bucket-acl" {
   acl = "public-read"
 
   depends_on = [ 
-    aws_s3_bucket_ownership_controls.bucket-ownership-control.id,
+    aws_s3_bucket_ownership_controls.bucket-ownership-control,
     aws_s3_bucket_public_access_block.bucket-public-access.id
     ]
 
