@@ -41,7 +41,7 @@ resource "aws_s3_bucket_acl" "bucket-acl" {
 
   depends_on = [ 
     aws_s3_bucket_ownership_controls.bucket-ownership-control,
-    aws_s3_bucket_public_access_block.bucket-public-access.id
+    aws_s3_bucket_public_access_block.bucket-public-access
     ]
 
 }

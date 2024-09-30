@@ -1,6 +1,6 @@
 # Origin access identity
 
-resource "aws_cloudfront_origin_access_identity" "origin-access-identiyy" {
+resource "aws_cloudfront_origin_access_identity" "origin-access-identity" {
     comment = "OAI for next.js website"
   
 }
@@ -10,11 +10,11 @@ resource "aws_cloudfront_origin_access_identity" "origin-access-identiyy" {
 resource "aws_cloudfront_distribution" "nextjs-website-distribution" {
   origin {
     domain_name = aws_s3_bucket.next-js-bucket-99.bucket_regional_domain_name
-    origin_id   = aws_s3_bucket_website_configuration.s3-bucket-config.id
+    origin_id   = "next-js-bucket-99"
 
 # specifies the OAI CloudFront uses to access the s3 bucket
     s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.origin-access-identity.aws_cloudfront_origin_access_identity_path
+      origin_access_identity = aws_cloudfront_origin_access_identity.origin-access-identity.cloudfront_access_identity_path
     }
   }
 
