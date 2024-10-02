@@ -37,12 +37,12 @@ resource "aws_s3_bucket_public_access_block" "bucket-public-access" {
 #granular access to the bucket and its objects using predefined ACLs 
 resource "aws_s3_bucket_acl" "bucket-acl" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
-  acl = "public-read"
+  acl    = "public-read"
 
-  depends_on = [ 
+  depends_on = [
     aws_s3_bucket_ownership_controls.bucket-ownership-control,
     aws_s3_bucket_public_access_block.bucket-public-access
-    ]
+  ]
 
 }
 
@@ -51,20 +51,19 @@ resource "aws_s3_bucket_acl" "bucket-acl" {
 # define detailed access permission for the bucket and its objects using IAM policies 
 resource "aws_s3_bucket_policy" "my-bucket-policy" {
   bucket = aws_s3_bucket.next-js-bucket-99.id
+  #   
 
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Id": "my-bucket-policy",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetObject",
-      "Action": "s3:GetObject",
-      "Effect": "Allow",
-      "Resource": "arn:aws:s3:::next-js-bucket-99",
-      "Principal": "*"
-    }
-  ]
-}
-POLICY
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "PublicReadGetObject"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = "s3:GetObject"
+        Resource  = "${aws_s3_bucket.next-js-bucket-99.arn}/*"
+      }
+    ]
+  })
+
 }
