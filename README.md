@@ -4,7 +4,7 @@ Scenario
 
 Tim Smith is a freelance front-end developer who wants to showcase his work and attract more clients. He has designed a modern, responsive single-page website using the Next.js framework. Tim requires his website to be hosted on a scalable and cost-effective platform. Additionally, the website needs to be highly available and deliver fast loading times for a global audience.
 
-Project Outcome
+Project Outcome:
 
 - Host a Next.js Website on AWS CloudFront
 - Use Terraform to automate the creation of AWS resources
@@ -12,3 +12,5 @@ Project Outcome
 - Create a remote s3 state file and a Dynamodb table for state locking and consistency
 - Apply best security practices for security and performance
 
+Documentation:
+https://medium.com/@akkiyemba01/next-js-web-app-hosted-on-aws-cloudfront-ede1f2aeeb7a
