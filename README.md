@@ -13,4 +13,6 @@ Project Outcome:
 - Apply best security practices for security and performance
 
 Documentation:
+
+
 https://medium.com/@akkiyemba01/next-js-web-app-hosted-on-aws-cloudfront-ede1f2aeeb7a
